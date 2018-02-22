@@ -77,7 +77,7 @@ public class InspectTableRecordService {
         List<InspectItemRecord> inspectItemRecords=new ArrayList<InspectItemRecord>();
         InspectTableRecord inspectTableRecord =new InspectTableRecord();
         Element root = document.getRootElement();
-        if(root.getName()!="check"){
+        if(!root.getName().equals("check")){
             flag = 2;
             map.put("flag",flag);
             return map;

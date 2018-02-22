@@ -44,7 +44,7 @@ $.extend({
         $.clearAllMarker;
         /*var provinceArray=$.getProvinceData();
         $.drawProvinceBoundaryWithDataRule(province,provinceArray,flag);*/
-        $.post($.URL.dataRuleAddress.getProvinceAndColorWithDataRole,null,getProvinceCallBack,"json");
+        $.post("rs/dataRuleAddress/getProvinceAndColorWithDataRole",null,getProvinceCallBack,"json");
         function getProvinceCallBack(data){
             $.getProvinceWithRule(data,flag);
             if(flag==0){
@@ -129,7 +129,7 @@ $.extend({
         circledata.radius=radius;
         circledata.centerlng=centerlng;
         circledata.centerlat=centerlat;
-        $.post($.URL.craneinspectreport.getCraneInspectReportInfoFromCircle,circledata,getCraneInspectReportInfoFromCircleCallback,"json");
+        $.post("rs/craneinspectreport/getCraneInspectReportInfoFromCircle",circledata,getCraneInspectReportInfoFromCircleCallback,"json");
         function getCraneInspectReportInfoFromCircleCallback(data){
             if(data.code=200){
                 $("#rankTitle").html("");
@@ -228,7 +228,7 @@ $.extend({
                                },delay);
                            }
                            $("#province option[value='"+data.province+"']").attr("selected",true);
-                           $.post($.URL.dataRuleAddress.getCityAndColorWithDataRole,{"province":data.province}, $.getCityByProvinceCallback,"json");
+                           $.post("rs/dataRuleAddress/getCityAndColorWithDataRole",{"province":data.province}, $.getCityByProvinceCallback,"json");
                            $.showCityRisk(data.province,1);                    });
                    }
                }
@@ -273,7 +273,7 @@ $.extend({
                             },delay);
                         }
                         $("#city option[value='"+data.city+"']").attr("selected",true);
-                        $.post($.URL.dataRuleAddress.getAreaAndColorWithDataRole,{"province":province,"city":data.city}, $.getAreaByProvinceAndCityCallback,"json");
+                        $.post("rs/dataRuleAddress/getAreaAndColorWithDataRole",{"province":province,"city":data.city}, $.getAreaByProvinceAndCityCallback,"json");
                         $.showAreaRisk(province,data.city,1);                    });
                 }
             }

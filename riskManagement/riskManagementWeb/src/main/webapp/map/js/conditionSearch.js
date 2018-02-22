@@ -16,24 +16,24 @@ $.extend({
         if(pro=="0"&&city=="0"&&area=="0"){
             //1.在全国范围内设备类型筛选
             $.initMap("中国",5);
-            $.post($.URL.dataRuleAddress.getProvinceListWithDataRole,null,getProvinceListCallback,"json");
-            $.post($.URL.dataRuleAddress.getProvinceInfoWithDataRuleByCondition,{"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getProvinceInfoWithDataRuleByConditionCallback,"json");
+            $.post("rs/dataRuleAddress/getProvinceListWithDataRole",null,getProvinceListCallback,"json");
+            $.post("rs/dataRuleAddress/getProvinceInfoWithDataRuleByCondition",{"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getProvinceInfoWithDataRuleByConditionCallback,"json");
         }else if(pro!="0"&&city=="0"&&area=="0"){
             //4.在省+设备类型
             $.initMap(pro,8);
-            $.post($.URL.address.getCityByProvince,{"province":pro}, getCityByProvinceCallback,"json");
-            $.post($.URL.craneinspectreport.getCityInfoByCondition,{"province":pro,"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getCityInfoByConditionCallback,"json");
+            $.post("rs/address/getCityByProvince",{"province":pro}, getCityByProvinceCallback,"json");
+            $.post("rs/craneinspectreport/getCityInfoByCondition",{"province":pro,"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getCityInfoByConditionCallback,"json");
 
         }else if(pro!="0"&&city!="0"&&area=="0"){
             //7.省市+设备类型
             $.initMap(city,10);
-            $.post($.URL.address.getAreaByProvinceAndCity,{"province":pro,"city":city}, getAreaByProvinceAndCityCallback,"json");
-            $.post($.URL.craneinspectreport.getAreaInfoByCondition,{"province":pro,"city":city,"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getAreaInfoByConditionCallback,"json");
+            $.post("rs/address/getAreaByProvinceAndCity",{"province":pro,"city":city}, getAreaByProvinceAndCityCallback,"json");
+            $.post("rs/craneinspectreport/getAreaInfoByCondition",{"province":pro,"city":city,"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getAreaInfoByConditionCallback,"json");
         }
         else if(pro!="0"&&city!="0"&&area!="0"){
             //10.省市区+设备类型
             $.initMap(area,12);
-            $.post($.URL.craneinspectreport.getCraneInfoByCondition,{"province":pro,"city":city,"area":area,"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getCraneInfoByConditionCallback,"json");
+            $.post("rs/craneinspectreport/getCraneInfoByCondition",{"province":pro,"city":city,"area":area,"equipmentVariety":equipVariety,"useTime":useTime,"value":slide},getCraneInfoByConditionCallback,"json");
         }
         function getCraneInfoByConditionCallback(data){
             $.showUnitRiskRankCallback(data);

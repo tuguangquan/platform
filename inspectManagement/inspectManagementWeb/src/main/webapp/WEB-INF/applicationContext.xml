@@ -48,5 +48,5 @@
         <property name="basePackage"
                   value="org.whut.platform.business,org.whut.inspectManagement.business" />
     </bean>
-    <import resource="security-applicationContext.xml"/>
+    <import resource="security-applicationContext-nocas.xml"/>
 </beans>

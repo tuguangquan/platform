@@ -39,7 +39,7 @@ public class InspectLocateServiceWeb {
          Date now = new Date();
          now.setTime(now.getTime()-60*60*1000);
          condition.put("appId",appId);
-         condition.put("updateTime",now);
+         //condition.put("updateTime",now);
          List<Map<String,String>>list=inspectLocateService.findByCondition(condition);
          return JsonResultUtils.getObjectResultByStringAsDefault(list,JsonResultUtils.Code.SUCCESS);
      }

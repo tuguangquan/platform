@@ -32,7 +32,7 @@ $.extend({
     //根据单位来添加覆盖物以及查询相应的信息
     getCompanyInfoByUnitAddress:function getCompanyInfoByUnitAddress(unitAddress){
         $.clearAllMarker();
-        $.post($.URL.craneinspectreport.getOneUnitAddressInfo,{"unitAddress":unitAddress},getOneUnitAddressInfoCallback,"json");
+        $.post("rs/craneinspectreport/getOneUnitAddressInfo",{"unitAddress":unitAddress},getOneUnitAddressInfoCallback,"json");
         function getOneUnitAddressInfoCallback(data){
             var unitAddressMarker=new Array();
             if(data.code==200){
@@ -71,7 +71,7 @@ $.extend({
         var _id="#"+id;
         $(_id).mouseover(function(){
             var cid=this.id.substring(11,this.id.length);
-            $.post($.URL.craneinspectreport.getCraneInspectReportInfoById,{"id":cid},getCraneInspectReportInfoByIdCallback,"json");
+            $.post("rs/craneinspectreport/getCraneInspectReportInfoById",{"id":cid},getCraneInspectReportInfoByIdCallback,"json");
             var dataArray=new Array();
             function getCraneInspectReportInfoByIdCallback(data){
                 if(data.code==200){
@@ -115,7 +115,7 @@ $.extend({
         $(_id).click(function(){
             $.iTabClick("#riskRank","#riskInfo","#rightRank","#rightshow");
             var unitAddress=$("#"+this.id).children(".rcontentItem").children(".unitFont").text();
-            $.post($.URL.craneinspectreport.getAreaInfoByUnitAddress,{"unitAddress":unitAddress}, $.getAreaInfoByUnitAddressCallback,"json");
+            $.post("rs/craneinspectreport/getAreaInfoByUnitAddress",{"unitAddress":unitAddress}, $.getAreaInfoByUnitAddressCallback,"json");
         });
         // $.post($.URL.craneinspectreport.getCraneInspectReportInfoById,{"id":cid},getCraneInspectReportInfoByIdCallback,"json");
     },
@@ -144,15 +144,15 @@ $.extend({
             _marker.addEventListener("click",function(){
                 this.openInfoWindow(_iw);
                 $.iTabClick("#riskRank","#riskInfo","#rightRank","#rightshow");
-                $.post($.URL.craneinspectreport.getAreaInfoByUnitAddress,{"unitAddress":title}, $.getAreaInfoByUnitAddressCallback,"json");
+                $.post("rs/craneinspectreport/getAreaInfoByUnitAddress",{"unitAddress":title}, $.getAreaInfoByUnitAddressCallback,"json");
             });
             _marker.addEventListener("mouseover",function(){
                 this.openInfoWindow(_iw);
-                $.post($.URL.craneinspectreport.getOneUnitAddressInfo,{"unitAddress":title},mouseoverCallback,"json");
-                $.post($.URL.craneinspectreport.getAreaInfoByUnitAddress,{"unitAddress":title}, $.getAreaInfoByUnitAddressCallback,"json");
+                $.post("rs/craneinspectreport/getOneUnitAddressInfo",{"unitAddress":title},mouseoverCallback,"json");
+                $.post("rs/craneinspectreport/getAreaInfoByUnitAddress",{"unitAddress":title}, $.getAreaInfoByUnitAddressCallback,"json");
             });
             _marker.addEventListener("mouseout",function(){
-                $.post($.URL.craneinspectreport.getOneUnitAddressInfo,{"unitAddress":title},mouseoutCallback,"json");
+                $.post("rs/craneinspectreport/getOneUnitAddressInfo",{"unitAddress":title},mouseoutCallback,"json");
             });
             function mouseoverCallback(data){
                 if(data.code==200){
@@ -185,10 +185,10 @@ $.extend({
         })()
     },
     showUnitRiskRank:function showUnitRiskRank(unitAddress){
-        $.post($.URL.craneinspectreport.getOneUnitAddressInfo,{"unitAddress":unitAddress}, $.showUnitRiskRankCallback,"json");
+        $.post("rs/craneinspectreport/getOneUnitAddressInfo",{"unitAddress":unitAddress}, $.showUnitRiskRankCallback,"json");
     },
     showRiskInfo:function showRiskInfo(unit){
-        $.post($.URL.craneinspectreport.getAreaInfoByUnitAddress,{"unitAddress":unit}, $.getAreaInfoByUnitAddressCallback,"json");
+        $.post("rs/craneinspectreport/getAreaInfoByUnitAddress",{"unitAddress":unit}, $.getAreaInfoByUnitAddressCallback,"json");
     },
     rightShowInfoClick:function rightShowInfoClick(infoFontNum){
         $("#"+infoFontNum).click(function(){
@@ -218,7 +218,7 @@ $.extend({
                 var address_equipmentvariety=$(hideField).text();
                 var itemInfo="#itemInfo"+data.data[i].id;
                 $(itemInfo).html("");
-                $.post($.URL.craneinspectreport.getCraneInspectReportInfoByAddressAndEquipment,{"address_equipmentvariety":address_equipmentvariety,"itemInfoId":itemInfo}, $.getCraneInspectReportInfoByAddressAndEquipmentCallBack,"json");
+                $.post("rs/craneinspectreport/getCraneInspectReportInfoByAddressAndEquipment",{"address_equipmentvariety":address_equipmentvariety,"itemInfoId":itemInfo}, $.getCraneInspectReportInfoByAddressAndEquipmentCallBack,"json");
                 $.rightShowInfoClick(infoFontNum);
 
             }
@@ -288,7 +288,7 @@ $.extend({
             if(flag==0){
             }else if(flag==1){
                 $("#province option[value='"+province+"']").attr("selected",true);
-                $.post($.URL.dataRuleAddress.getCityAndColorWithDataRole,{"province":province}, $.getCityByProvinceCallback,"json");
+                $.post("rs/dataRuleAddress/getCityAndColorWithDataRole",{"province":province}, $.getCityByProvinceCallback,"json");
                 $.showCityRisk(province,1);
             }
         });
@@ -300,7 +300,7 @@ $.extend({
             if(flag==0){
             }else if(flag==1){
                 $("#city option[value='"+city+"']").attr("selected",true);
-                $.post($.URL.dataRuleAddress.getAreaAndColorWithDataRole,{"province":province,"city":city}, $.getAreaByProvinceAndCityCallback,"json");
+                $.post("rs/dataRuleAddress/getAreaAndColorWithDataRole",{"province":province,"city":city}, $.getAreaByProvinceAndCityCallback,"json");
                 $.showAreaRisk(province,city,1);
             }
         });

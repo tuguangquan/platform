@@ -25,11 +25,18 @@
             <artifactId>groovy-all</artifactId>
             <version>1.7.5</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.itextpdf/itext-asian -->
         <dependency>
-            <groupId>com.lowagie</groupId>
-            <artifactId>itextasian</artifactId>
-            <version>1.0</version>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-asian</artifactId>
+            <version>5.2.0</version>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>com.lowagie</groupId>-->
+            <!--<artifactId>itextasian</artifactId>-->
+            <!--<version>1.0</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>iTextAsianCmaps</groupId>
             <artifactId>iTextAsianCmaps</artifactId>
